@@ -23,7 +23,7 @@ def read(*rnames):
 
 setup(
     name='cipher.lazydate',
-    version='1.1',
+    version='1.2-dev',
     description='Human-friendly zope.schema datetime field',
     url="http://pypi.python.org/pypi/cipher.lazydate/",
     author='Zope Foundation and Contributors',

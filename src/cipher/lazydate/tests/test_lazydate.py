@@ -161,6 +161,27 @@ def doctest_LazyDateField_fromUnicode():
 
     """
 
+def doctest_LazyDateField_empty():
+    """LazyDateField converts empty strings to None
+        >>> field = lazydate.LazyDateField(title=u'Date')
+        >>> print field.fromUnicode('')
+        None
+    """
+
+def doctest_LazyDateF_empty():
+    """LazyDate converts '' to None
+
+        >>> ld = lazydate.LazyDate('')
+        >>> ld.validate()
+        0
+
+        >>> print ld.date()
+        None
+
+        >>> print ld.datetime()
+        None
+
+    """
 def test_suite():
     return doctest.DocTestSuite(
         optionflags=doctest.REPORT_NDIFF|doctest.ELLIPSIS,

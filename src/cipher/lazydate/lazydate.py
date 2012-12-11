@@ -25,11 +25,15 @@ class LazyDate(object):
 
     def datetime(self):
         timetuple, result = self._parse()
+        if not timetuple:
+            return None
         dt = datetime.datetime(*timetuple[:6])
         return self._addTimeZone(dt)
 
     def date(self):
         timetuple, result = self._parse()
+        if not timetuple:
+            return None
         dt = datetime.datetime(*timetuple[:3])
         return self._addTimeZone(dt)
 
@@ -44,6 +48,9 @@ class LazyDate(object):
     def _parse(self):
         # Try dateutil.parser first, since it does a better job with real
         # dates.
+        if not self.spec:
+            return None, 0
+
         try:
             dt = dateutil.parser.parse(self.spec)
         except ValueError:
@@ -81,6 +88,9 @@ class LazyDateField(zope.schema.Object):
         zope.schema.Object.__init__(self, interfaces.ILazyDate, **kw)
 
     def fromUnicode(self, strvalue):
+        if strvalue == '':
+            return None
+
         value = self.valueFactory(strvalue)
         if not value.validate():
             raise ValueError(strvalue)

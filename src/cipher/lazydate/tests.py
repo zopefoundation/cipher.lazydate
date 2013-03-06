@@ -12,12 +12,22 @@
 #
 ##############################################################################
 """Tests for cipher.lazydate"""
-import doctest
 import datetime
+import doctest
+import re
+import unittest
 
-from zope.interface.verify import verifyObject
 from zope.component import hooks
+from zope.interface.verify import verifyObject
+from zope.testing import renormalizing
 from cipher.lazydate import lazydate, interfaces
+
+checker = renormalizing.RENormalizing([
+    # Exception with module names.
+    (re.compile("zope.schema.interfaces.SchemaNotProvided"),
+     r"SchemaNotProvided"),
+    ])
+
 
 def stub_now():
     return datetime.datetime(2001, 1, 1, 1, 1, 1)
@@ -31,7 +41,7 @@ def doctest_LazyDate():
 
     String representations returns the stored string:
 
-        >>> print lazy
+        >>> print(lazy)
         now
 
         >>> lazy
@@ -46,20 +56,20 @@ def doctest_LazyDate_fixed_date():
     It does accept the US format:
 
         >>> lazy = lazydate.LazyDate("01/02/03")
-        >>> print lazy.date()
+        >>> print(lazy.date())
         2003-01-02 00:00:00
 
     It assumes a US format even with the dots:
 
         >>> lazy = lazydate.LazyDate("11.12.13")
-        >>> print lazy.date()
+        >>> print(lazy.date())
         2013-11-12 00:00:00
 
     ISO-format is now properly handled.
 
         >>> lazy = lazydate.LazyDate("2012-12-13")
         >>> lazy._now = stub_now
-        >>> print lazy.datetime()
+        >>> print(lazy.datetime())
         2012-12-13 00:00:00
 
      """
@@ -70,22 +80,22 @@ def doctest_LazyDate_relative_date():
 
         >>> lazy = lazydate.LazyDate("today")
         >>> lazy._now = stub_now
-        >>> print lazy.datetime()
+        >>> print(lazy.datetime())
         2001-01-01 09:00:00
 
         >>> lazy = lazydate.LazyDate("1 week later")
         >>> lazy._now = stub_now
-        >>> print lazy.datetime()
+        >>> print(lazy.datetime())
         2001-01-08 01:01:01
 
         >>> lazy = lazydate.LazyDate("2 months ago at 3pm")
         >>> lazy._now = stub_now
-        >>> print lazy.datetime()
+        >>> print(lazy.datetime())
         2000-11-01 15:00:00
 
         >>> lazy = lazydate.LazyDate("last friday")
         >>> lazy._now = stub_now
-        >>> print lazy.datetime()
+        >>> print(lazy.datetime())
         2000-12-29 09:00:00
 
     """
@@ -132,7 +142,7 @@ def doctest_LazyDateField():
 
        >>> field.validate(datetime.date(2011, 1, 1))
        Traceback (most recent call last):
-         ...
+       ...
        SchemaNotProvided
 
     """
@@ -164,7 +174,7 @@ def doctest_LazyDateField_fromUnicode():
 def doctest_LazyDateField_empty():
     """LazyDateField converts empty strings to None
         >>> field = lazydate.LazyDateField(title=u'Date')
-        >>> print field.fromUnicode('')
+        >>> print(field.fromUnicode(''))
         None
     """
 
@@ -175,14 +185,17 @@ def doctest_LazyDateF_empty():
         >>> ld.validate()
         0
 
-        >>> print ld.date()
+        >>> print(ld.date())
         None
 
-        >>> print ld.datetime()
+        >>> print(ld.datetime())
         None
 
     """
 def test_suite():
-    return doctest.DocTestSuite(
-        optionflags=doctest.REPORT_NDIFF|doctest.ELLIPSIS,
-        )
+    return unittest.TestSuite((
+            doctest.DocTestSuite(
+                checker=checker,
+                optionflags=doctest.REPORT_NDIFF|doctest.ELLIPSIS,
+                )
+            ))

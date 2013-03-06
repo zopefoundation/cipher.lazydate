@@ -7,18 +7,17 @@
 
 import datetime
 import dateutil.parser
-import parsedatetime.parsedatetime
-import parsedatetime.parsedatetime_consts
 import zope.interface
 import zope.schema
 
 from cipher.lazydate import interfaces
+import cipher.lazydate.parsedatetime.parsedatetime
+import cipher.lazydate.parsedatetime.parsedatetime_consts
 
 
+@zope.interface.implementer(interfaces.ILazyDate)
 class LazyDate(object):
     """A value object for a textual datetime specification."""
-
-    zope.interface.implements(interfaces.ILazyDate)
 
     def __init__(self, date):
         self.spec = str(date)
@@ -57,8 +56,8 @@ class LazyDate(object):
             pass
         else:
             return dt.timetuple(), 1
-        parser = parsedatetime.parsedatetime.Calendar(
-            parsedatetime.parsedatetime_consts.Constants())
+        parser = cipher.lazydate.parsedatetime.parsedatetime.Calendar(
+            cipher.lazydate.parsedatetime.parsedatetime_consts.Constants())
         # Now without timezone information because some expressions
         # are not parsed correctly for timezone-aware times.
         return parser.parse(self.spec, self._tzNaiveNow())
@@ -77,10 +76,9 @@ class LazyDate(object):
         return 'LazyDate(%r)' % (self.spec, )
 
 
+@zope.interface.implementer(interfaces.ILazyDateField)
 class LazyDateField(zope.schema.Object):
     """Lazy date schema field"""
-
-    zope.interface.implements(interfaces.ILazyDateField)
 
     valueFactory = LazyDate
 

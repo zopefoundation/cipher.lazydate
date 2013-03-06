@@ -16,14 +16,13 @@
 import os
 from setuptools import setup, find_packages
 
-
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 
 setup(
     name='cipher.lazydate',
-    version='1.2-dev',
+    version='2.0.0.dev0',
     description='Human-friendly zope.schema datetime field',
     url="http://pypi.python.org/pypi/cipher.lazydate/",
     author='Zope Foundation and Contributors',
@@ -40,9 +39,14 @@ setup(
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: Implementation :: CPython',
         'Natural Language :: English',
         'Operating System :: OS Independent',
-        'Topic :: Internet :: WWW/HTTP',
         'Framework :: Zope3'],
     packages=find_packages('src'),
     package_dir={'': 'src'},
@@ -55,12 +59,13 @@ setup(
     ),
     install_requires=[
         'python-dateutil',
-        'parsedatetime',
         'setuptools',
         'zope.component',
         'zope.schema',
         'zope.interface',
     ],
+    tests_require=['zope.testing'],
+    test_suite='cipher.lazydate.tests.test_suite',
     include_package_data=True,
     zip_safe=False
     )

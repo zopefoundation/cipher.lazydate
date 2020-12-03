@@ -6,26 +6,32 @@ from __future__ import print_function
 from __future__ import print_function
 from __future__ import print_function
 import re
-import pprint
 
 
-offsets = { 'july': 7, 'jul': 7, 'august': 8, 'aug': 8, 'september': 9, 'sep': 9 }
+offsets = {
+    'july': 7,
+    'jul': 7,
+    'august': 8,
+    'aug': 8,
+    'september': 9,
+    'sep': 9,
+}
 
-rMonth = re.compile(r'''(\s?|^)
-                        (?P<month>(
-                                   (?P<mthname>(july|august|september|jul|aug|sep))
-                                   (\s?(?P<year>(\d\d\d\d)))?
-                                  ))
-                        (\s?|$|[^0-9a-zA-Z])''',
-                    re.IGNORECASE + re.VERBOSE)
-rDay = re.compile(r'''(?P<day>\d\d?)(?P<suffix>(nd|st|rd|th)?)''', re.IGNORECASE + re.VERBOSE)
+rMonth = re.compile(
+    r'''(\s?|^)
+        (?P<month>(
+                   (?P<mthname>(july|august|september|jul|aug|sep))
+                   (\s?(?P<year>(\d\d\d\d)))?
+                  ))
+        (\s?|$|[^0-9a-zA-Z])''', re.IGNORECASE + re.VERBOSE)
+rDay = re.compile(r'''(?P<day>\d\d?)(?P<suffix>(nd|st|rd|th)?)''',
+                  re.IGNORECASE + re.VERBOSE)
 
 
 def _check(dateString, dYear, dMonth, dDay):
-    yr  = []
+    yr = []
     mth = []
-    dy  = []
-
+    dy = []
 
     items = dateString.split(' ')
 
@@ -80,23 +86,23 @@ def _check(dateString, dYear, dMonth, dDay):
             n = 0
 
         print(yr, mth, dy, items, n)
-        print('-'*42)
+        print('-' * 42)
 
     return yr, mth, dy
 
 
-l = [ '23 aug 2008',
-      '23rd aug 2008',
-      # 'aug 23 2008',
-      # 'aug 23rd 2008',
-      # 'aug 3 2008',
-      # 'aug 3rd 2008',
-      # 'aug 1 2008',
-      # 'aug 1st 2008',
-      # 'aug 23',
-      # 'aug 23, 2008 5pm',
-    ]
+dates = [
+    '23 aug 2008',
+    '23rd aug 2008',
+    # 'aug 23 2008',
+    # 'aug 23rd 2008',
+    # 'aug 3 2008',
+    # 'aug 3rd 2008',
+    # 'aug 1 2008',
+    # 'aug 1st 2008',
+    # 'aug 23',
+    # 'aug 23, 2008 5pm',
+]
 
-for t in l:
+for t in dates:
     print(_check(t, 2008, 10, 28))
-

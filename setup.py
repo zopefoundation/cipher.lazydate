@@ -16,6 +16,7 @@
 import os
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
@@ -32,7 +33,7 @@ setup(
         read('README.txt')
         + '\n\n' +
         read('CHANGES.txt')
-        ),
+    ),
     license='ZPL 2.1',
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -40,10 +41,13 @@ setup(
         'Intended Audience :: Developers',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation :: CPython',
         'Natural Language :: English',
         'Operating System :: OS Independent',
@@ -68,4 +72,4 @@ setup(
     test_suite='cipher.lazydate.tests.test_suite',
     include_package_data=True,
     zip_safe=False
-    )
+)

@@ -7,7 +7,7 @@ various regex values using locale information if available.
 """
 
 version = '0.8.7'
-author  = 'Mike Taylor and Darshana Chhajed'
+author = 'Mike Taylor and Darshana Chhajed'
 license = """
 Copyright (c) 2004-2008 Mike Taylor
 Copyright (c) 2006-2008 Darshana Chhajed
@@ -25,4 +25,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-

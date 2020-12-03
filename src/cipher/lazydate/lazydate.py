@@ -41,7 +41,9 @@ class LazyDate(object):
         return status != 0
 
     def _addTimeZone(self, dt):
-        """A hook for subclasses to add timezone information for parsed dates"""
+        """A hook for subclasses to add timezone information for parsed dates.
+
+        """
         return dt
 
     def _parse(self):

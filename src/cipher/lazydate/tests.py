@@ -17,24 +17,26 @@ import doctest
 import re
 import unittest
 
-from zope.component import hooks
-from zope.interface.verify import verifyObject
+
 from zope.testing import renormalizing
-from cipher.lazydate import lazydate, interfaces
+from cipher.lazydate import lazydate
 
 checker = renormalizing.RENormalizing([
     # Exception with module names.
-    (re.compile("zope.schema.interfaces.SchemaNotProvided"),
+    (re.compile("zope.schema._bootstrapinterfaces.SchemaNotProvided"),
      r"SchemaNotProvided"),
-    ])
+])
 
 
 def stub_now():
     return datetime.datetime(2001, 1, 1, 1, 1, 1)
 
+
 def doctest_LazyDate():
     """LazyDate fulfills its interface.
 
+        >>> from zope.interface.verify import verifyObject
+        >>> from cipher.lazydate import lazydate, interfaces
         >>> lazy = lazydate.LazyDate("now")
         >>> verifyObject(interfaces.ILazyDate, lazy)
         True
@@ -138,14 +140,14 @@ def doctest_LazyDateField():
        >>> field.validate("01/01/01")
        Traceback (most recent call last):
          ...
-       SchemaNotProvided
+       SchemaNotProvided: (<InterfaceClass cipher.lazydate.interfaces.ILazyDate>, '01/01/01')
 
        >>> field.validate(datetime.date(2011, 1, 1))
        Traceback (most recent call last):
        ...
-       SchemaNotProvided
+       SchemaNotProvided: (<InterfaceClass cipher.lazydate.interfaces.ILazyDate>, datetime.date(2011, 1, 1))
 
-    """
+    """  # noqa: E501 line too long
 
 
 def doctest_LazyDateField_fromUnicode():
@@ -171,12 +173,14 @@ def doctest_LazyDateField_fromUnicode():
 
     """
 
+
 def doctest_LazyDateField_empty():
     """LazyDateField converts empty strings to None
         >>> field = lazydate.LazyDateField(title=u'Date')
         >>> print(field.fromUnicode(''))
         None
     """
+
 
 def doctest_LazyDateF_empty():
     """LazyDate converts '' to None
@@ -192,10 +196,12 @@ def doctest_LazyDateF_empty():
         None
 
     """
+
+
 def test_suite():
     return unittest.TestSuite((
-            doctest.DocTestSuite(
-                checker=checker,
-                optionflags=doctest.REPORT_NDIFF|doctest.ELLIPSIS,
-                )
-            ))
+        doctest.DocTestSuite(
+            checker=checker,
+            optionflags=doctest.REPORT_NDIFF | doctest.ELLIPSIS,
+        )
+    ))

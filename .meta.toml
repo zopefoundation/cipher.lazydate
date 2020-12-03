@@ -1,0 +1,22 @@
+# Generated from:
+# https://github.com/zopefoundation/meta/tree/master/config/pure-python
+[meta]
+template = "pure-python"
+commit-id = "6aa7aede0bac22bf0a1ffce218aad78e2b5b1eff"
+
+[python]
+with-legacy-python = true
+with-pypy = false
+with-docs = false
+with-sphinx-doctests = false
+
+[coverage]
+fail-under = 44
+
+[flake8]
+additional-config = [
+    "per-file-ignores =",
+    "    # E221 multiple spaces before operator",
+    "    # E222 multiple spaces after operator",
+    "    src/cipher/lazydate/parsedatetime/parsedatetime_consts.py: E221 E222",
+    ]

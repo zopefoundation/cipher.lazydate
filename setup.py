@@ -23,7 +23,7 @@ def read(*rnames):
 
 setup(
     name='cipher.lazydate',
-    version='2.0.1.dev0',
+    version='2.1.dev0',
     description='Human-friendly zope.schema datetime field',
     url="http://pypi.python.org/pypi/cipher.lazydate/",
     author='Zope Foundation and Contributors',
@@ -55,11 +55,14 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     extras_require=dict(
-        test=['zope.testing',
-              'z3c.coverage',
-              'coverage',
-              'python-subunit',
-              'junitxml'],
+        test=[
+            'coverage',
+            'junitxml',
+            'python-subunit',
+            'z3c.coverage',
+            'zope.testing',
+            'zope.testrunner',
+        ],
     ),
     install_requires=[
         'python-dateutil',
@@ -68,8 +71,6 @@ setup(
         'zope.schema',
         'zope.interface',
     ],
-    tests_require=['zope.testing'],
-    test_suite='cipher.lazydate.tests.test_suite',
     include_package_data=True,
     zip_safe=False
 )

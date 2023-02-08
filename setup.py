@@ -27,9 +27,9 @@ setup(
     name='cipher.lazydate',
     version='3.0.dev0',
     description='Human-friendly zope.schema datetime field',
-    url="http://pypi.python.org/pypi/cipher.lazydate/",
+    url="https://github.com/zopefoundation/cipher.lazydate",
     author='Zope Foundation and Contributors',
-    author_email='zope-dev@zope.org',
+    author_email='zope-dev@zope.dev',
     keywords="schema date field",
     long_description=(
         read('README.txt')
@@ -55,6 +55,7 @@ setup(
     ],
     packages=find_packages('src'),
     package_dir={'': 'src'},
+    python_requires='>=3.7',
     extras_require=dict(
         test=[
             'coverage',

@@ -200,9 +200,9 @@ def doctest_LazyDateF_empty():
 
 
 def test_suite():
-    return unittest.TestSuite((
+    return unittest.TestSuite(
         doctest.DocTestSuite(
             checker=checker,
             optionflags=doctest.REPORT_NDIFF | doctest.ELLIPSIS,
         )
-    ))
+    )

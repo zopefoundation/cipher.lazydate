@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-2.1 (unreleased)
+3.0 (unreleased)
 ----------------
 
 - Added support for Python 3.5, 3.6, 3.7, 3.8 and 3.9.

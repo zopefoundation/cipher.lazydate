@@ -17,9 +17,10 @@ import doctest
 import re
 import unittest
 
-
 from zope.testing import renormalizing
+
 from cipher.lazydate import lazydate
+
 
 checker = renormalizing.RENormalizing([
     # Exception with module names.

@@ -4,11 +4,14 @@
 Parse human-readable date/time text.
 """
 from __future__ import print_function
-import re
-import time
+
 import datetime
 import email.utils
+import re
+import time
+
 from . import parsedatetime_consts
+
 
 __license__ = """
 Copyright (c) 2004-2008 Mike Taylor

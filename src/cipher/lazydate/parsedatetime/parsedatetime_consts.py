@@ -8,11 +8,13 @@ Also contains the internal Locale classes to give some sane
 defaults if PyICU is not found.
 """
 
-import datetime
 import calendar
-import time
+import datetime
 import re
+import time
+
 from six.moves import map
+
 
 __license__ = """
 Copyright (c) 2004-2008 Mike Taylor

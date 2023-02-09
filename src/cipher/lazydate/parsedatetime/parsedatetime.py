@@ -3,12 +3,14 @@
 """
 Parse human-readable date/time text.
 """
-from __future__ import print_function
-import re
-import time
+
 import datetime
 import email.utils
+import re
+import time
+
 from . import parsedatetime_consts
+
 
 __license__ = """
 Copyright (c) 2004-2008 Mike Taylor
@@ -138,7 +140,7 @@ def _parse_date_w3dtf(dateString):
     __time_re = (r'(?P<hours>\d\d)(?P<tsep>:|)(?P<minutes>\d\d)'
                  r'(?:(?P=tsep)(?P<seconds>\d\d(?:[.,]\d+)?))?'
                  + __tzd_re)
-    __datetime_re = '%s(?:T%s)?' % (__date_re, __time_re)
+    __datetime_re = '{}(?:T{})?'.format(__date_re, __time_re)
     __datetime_rx = re.compile(__datetime_re)
     m = __datetime_rx.match(dateString)
     if (m is None) or (m.group() != dateString):
@@ -247,7 +249,7 @@ class Calendar:
         @return: C{struct_time} of the calculated time
         """
         if _debug:
-            print('_buildTime: [%s][%s][%s]' % (quantity, modifier, units))
+            print('_buildTime: [{}][{}][{}]'.format(quantity, modifier, units))
 
         if source is None:
             source = time.localtime()
@@ -494,7 +496,7 @@ class Calendar:
                 parseStr = m.group()
                 chunk1 = s[:m.start()]
                 chunk2 = s[m.end():]
-                s = '%s %s' % (chunk1, chunk2)
+                s = '{} {}'.format(chunk1, chunk2)
                 flag = 1
 
                 sourceTime, flag = self.parse(s, sourceTime)
@@ -838,7 +840,7 @@ class Calendar:
 
                 # check if the remaining text is parsable and if so,
                 # use it as the base time for the modifier source time
-                t, flag2 = self.parse('%s %s' % (chunk1, unit), sourceTime)
+                t, flag2 = self.parse('{} {}'.format(chunk1, unit), sourceTime)
 
                 if flag2 != 0:
                     sourceTime = t
@@ -858,7 +860,7 @@ class Calendar:
                 # if offset is negative, the unit has to be made negative
                 unit = '-%s' % unit
 
-            chunk2 = '%s %s' % (unit, chunk2)
+            chunk2 = '{} {}'.format(unit, chunk2)
 
         self.modifierFlag = False
 
@@ -1208,7 +1210,7 @@ class Calendar:
             chunk2 = ''
 
             if _debug:
-                print('parse (top of loop): [%s][%s]' % (s, parseStr))
+                print('parse (top of loop): [{}][{}]'.format(s, parseStr))
 
             if parseStr == '':
                 # Modifier like next\prev..
@@ -1259,7 +1261,7 @@ class Calendar:
                         parseStr = m.group('date')
                         chunk1 = s[:m.start('date')]
                         chunk2 = s[m.end('date'):]
-                        s = '%s %s' % (chunk1, chunk2)
+                        s = '{} {}'.format(chunk1, chunk2)
                         flag = True
                     else:
                         parseStr = s
@@ -1275,7 +1277,7 @@ class Calendar:
                         parseStr = m.group('date')
                         chunk1 = s[:m.start('date')]
                         chunk2 = s[m.end('date'):]
-                        s = '%s %s' % (chunk1, chunk2)
+                        s = '{} {}'.format(chunk1, chunk2)
                         flag = True
                     else:
                         parseStr = s
@@ -1291,7 +1293,7 @@ class Calendar:
                         parseStr = m.group('day')
                         chunk1 = s[:m.start('day')]
                         chunk2 = s[m.end('day'):]
-                        s = '%s %s' % (chunk1, chunk2)
+                        s = '{} {}'.format(chunk1, chunk2)
                         flag = True
                     else:
                         parseStr = s
@@ -1311,7 +1313,7 @@ class Calendar:
                             parseStr = '-%s' % parseStr
                             chunk1 = chunk1[:-1]
 
-                        s = '%s %s' % (chunk1, chunk2)
+                        s = '{} {}'.format(chunk1, chunk2)
                         flag = True
                     else:
                         parseStr = s
@@ -1332,7 +1334,7 @@ class Calendar:
                             parseStr = '-%s' % parseStr
                             chunk1 = chunk1[:-1]
 
-                        s = '%s %s' % (chunk1, chunk2)
+                        s = '{} {}'.format(chunk1, chunk2)
                         flag = True
                     else:
                         parseStr = s
@@ -1350,7 +1352,7 @@ class Calendar:
                             parseStr = gv
                             chunk1 = s[:m.start('weekday')]
                             chunk2 = s[m.end('weekday'):]
-                            s = '%s %s' % (chunk1, chunk2)
+                            s = '{} {}'.format(chunk1, chunk2)
                             flag = True
                         else:
                             parseStr = s
@@ -1366,7 +1368,7 @@ class Calendar:
                         parseStr = m.group('time')
                         chunk1 = s[:m.start('time')]
                         chunk2 = s[m.end('time'):]
-                        s = '%s %s' % (chunk1, chunk2)
+                        s = '{} {}'.format(chunk1, chunk2)
                         flag = True
                     else:
                         parseStr = s
@@ -1379,22 +1381,23 @@ class Calendar:
                     self.timeFlag = 2
                     if m.group('minutes') is not None:
                         if m.group('seconds') is not None:
-                            parseStr = '%s:%s:%s %s' % (m.group('hours'),
-                                                        m.group('minutes'),
-                                                        m.group('seconds'),
-                                                        m.group('meridian'))
+                            parseStr = '{}:{}:{} {}'.format(
+                                m.group('hours'),
+                                m.group('minutes'),
+                                m.group('seconds'),
+                                m.group('meridian'))
                         else:
-                            parseStr = '%s:%s %s' % (m.group('hours'),
-                                                     m.group('minutes'),
-                                                     m.group('meridian'))
+                            parseStr = '{}:{} {}'.format(m.group('hours'),
+                                                         m.group('minutes'),
+                                                         m.group('meridian'))
                     else:
-                        parseStr = '%s %s' % (m.group('hours'),
-                                              m.group('meridian'))
+                        parseStr = '{} {}'.format(m.group('hours'),
+                                                  m.group('meridian'))
 
                     chunk1 = s[:m.start('hours')]
                     chunk2 = s[m.end('meridian'):]
 
-                    s = '%s %s' % (chunk1, chunk2)
+                    s = '{} {}'.format(chunk1, chunk2)
                     flag = True
 
             if parseStr == '':
@@ -1404,18 +1407,18 @@ class Calendar:
                     self.timeStdFlag = True
                     self.timeFlag = 2
                     if m.group('seconds') is not None:
-                        parseStr = '%s:%s:%s' % (m.group('hours'),
-                                                 m.group('minutes'),
-                                                 m.group('seconds'))
+                        parseStr = '{}:{}:{}'.format(m.group('hours'),
+                                                     m.group('minutes'),
+                                                     m.group('seconds'))
                         chunk1 = s[:m.start('hours')]
                         chunk2 = s[m.end('seconds'):]
                     else:
-                        parseStr = '%s:%s' % (m.group('hours'),
-                                              m.group('minutes'))
+                        parseStr = '{}:{}'.format(m.group('hours'),
+                                                  m.group('minutes'))
                         chunk1 = s[:m.start('hours')]
                         chunk2 = s[m.end('minutes'):]
 
-                    s = '%s %s' % (chunk1, chunk2)
+                    s = '{} {}'.format(chunk1, chunk2)
                     flag = True
 
             # if string does not match any regex, empty string to
@@ -1424,7 +1427,7 @@ class Calendar:
                 s = ''
 
             if _debug:
-                print('parse (bottom) [%s][%s][%s][%s]' % (
+                print('parse (bottom) [{}][{}][{}][{}]'.format(
                     s, parseStr, chunk1, chunk2))
                 print('weekday %s, dateStd %s, dateStr %s, time %s, timeStr'
                       ' %s, meridian %s' %

@@ -8,11 +8,11 @@ Also contains the internal Locale classes to give some sane
 defaults if PyICU is not found.
 """
 
-import datetime
 import calendar
-import time
+import datetime
 import re
-from six.moves import map
+import time
+
 
 __license__ = """
 Copyright (c) 2004-2008 Mike Taylor
@@ -50,24 +50,24 @@ class pdtLocale_en:
     """
 
     localeID      = 'en_US'   # don't use a unicode string
-    dateSep       = [u'/', u'.']
-    timeSep       = [u':']
-    meridian      = [u'AM', u'PM']
+    dateSep       = ['/', '.']
+    timeSep       = [':']
+    meridian      = ['AM', 'PM']
     usesMeridian  = True
     uses24        = False
 
-    Weekdays      = [u'monday', u'tuesday', u'wednesday',
-                     u'thursday', u'friday', u'saturday', u'sunday']
-    shortWeekdays = [u'mon', u'tues', u'wed',
-                     u'thu', u'fri', u'sat', u'sun']
-    Months        = [u'january', u'february', u'march',
-                     u'april',   u'may',      u'june',
-                     u'july',    u'august',   u'september',
-                     u'october', u'november', u'december']
-    shortMonths   = [u'jan', u'feb', u'mar',
-                     u'apr', u'may', u'jun',
-                     u'jul', u'aug', u'sep',
-                     u'oct', u'nov', u'dec']
+    Weekdays      = ['monday', 'tuesday', 'wednesday',
+                     'thursday', 'friday', 'saturday', 'sunday']
+    shortWeekdays = ['mon', 'tues', 'wed',
+                     'thu', 'fri', 'sat', 'sun']
+    Months        = ['january', 'february', 'march',
+                     'april',   'may',      'june',
+                     'july',    'august',   'september',
+                     'october', 'november', 'december']
+    shortMonths   = ['jan', 'feb', 'mar',
+                     'apr', 'may', 'jun',
+                     'jul', 'aug', 'sep',
+                     'oct', 'nov', 'dec']
     dateFormats   = {'full':   'EEEE, MMMM d, yyyy',
                      'long':   'MMMM d, yyyy',
                      'medium': 'MMM d, yyyy',
@@ -77,7 +77,7 @@ class pdtLocale_en:
                      'medium': 'h:mm:ss a',
                      'short':  'h:mm a'}
 
-    dp_order = [u'm', u'd', u'y']
+    dp_order = ['m', 'd', 'y']
 
     # this will be added to re_consts later
     units = {'seconds': ['second', 'sec'],
@@ -143,24 +143,24 @@ class pdtLocale_au:
     """
 
     localeID      = 'en_AU'   # don't use a unicode string
-    dateSep       = [u'-', u'/']
-    timeSep       = [u':']
-    meridian      = [u'AM', u'PM']
+    dateSep       = ['-', '/']
+    timeSep       = [':']
+    meridian      = ['AM', 'PM']
     usesMeridian  = True
     uses24        = False
 
-    Weekdays      = [u'monday', u'tuesday', u'wednesday',
-                     u'thursday', u'friday', u'saturday', u'sunday']
-    shortWeekdays = [u'mon', u'tues', u'wed',
-                     u'thu', u'fri', u'sat', u'sun']
-    Months        = [u'january', u'february', u'march',
-                     u'april',   u'may',      u'june',
-                     u'july',    u'august',   u'september',
-                     u'october', u'november', u'december']
-    shortMonths   = [u'jan', u'feb', u'mar',
-                     u'apr', u'may', u'jun',
-                     u'jul', u'aug', u'sep',
-                     u'oct', u'nov', u'dec']
+    Weekdays      = ['monday', 'tuesday', 'wednesday',
+                     'thursday', 'friday', 'saturday', 'sunday']
+    shortWeekdays = ['mon', 'tues', 'wed',
+                     'thu', 'fri', 'sat', 'sun']
+    Months        = ['january', 'february', 'march',
+                     'april',   'may',      'june',
+                     'july',    'august',   'september',
+                     'october', 'november', 'december']
+    shortMonths   = ['jan', 'feb', 'mar',
+                     'apr', 'may', 'jun',
+                     'jul', 'aug', 'sep',
+                     'oct', 'nov', 'dec']
     dateFormats   = {'full':   'EEEE, d MMMM yyyy',
                      'long':   'd MMMM yyyy',
                      'medium': 'dd/MM/yyyy',
@@ -170,7 +170,7 @@ class pdtLocale_au:
                      'medium': 'h:mm:ss a',
                      'short':  'h:mm a'}
 
-    dp_order = [u'd', u'm', u'y']
+    dp_order = ['d', 'm', 'y']
 
     # this will be added to re_consts later
     units = {'seconds': ['second', 'sec'],
@@ -238,24 +238,24 @@ class pdtLocale_es:
     """
 
     localeID      = 'es'   # don't use a unicode string
-    dateSep       = [u'/']
-    timeSep       = [u':']
+    dateSep       = ['/']
+    timeSep       = [':']
     meridian      = []
     usesMeridian  = False
     uses24        = True
 
-    Weekdays      = [u'lunes', u'martes', u'mi\xe9rcoles',
-                     u'jueves', u'viernes', u's\xe1bado', u'domingo']
-    shortWeekdays = [u'lun', u'mar', u'mi\xe9',
-                     u'jue', u'vie', u's\xe1b', u'dom']
-    Months        = [u'enero', u'febrero', u'marzo',
-                     u'abril', u'mayo', u'junio',
-                     u'julio', u'agosto', u'septiembre',
-                     u'octubre', u'noviembre', u'diciembre']
-    shortMonths   = [u'ene', u'feb', u'mar',
-                     u'abr', u'may', u'jun',
-                     u'jul', u'ago', u'sep',
-                     u'oct', u'nov', u'dic']
+    Weekdays      = ['lunes', 'martes', 'mi\xe9rcoles',
+                     'jueves', 'viernes', 's\xe1bado', 'domingo']
+    shortWeekdays = ['lun', 'mar', 'mi\xe9',
+                     'jue', 'vie', 's\xe1b', 'dom']
+    Months        = ['enero', 'febrero', 'marzo',
+                     'abril', 'mayo', 'junio',
+                     'julio', 'agosto', 'septiembre',
+                     'octubre', 'noviembre', 'diciembre']
+    shortMonths   = ['ene', 'feb', 'mar',
+                     'abr', 'may', 'jun',
+                     'jul', 'ago', 'sep',
+                     'oct', 'nov', 'dic']
     dateFormats   = {'full':   "EEEE d' de 'MMMM' de 'yyyy",
                      'long':   "d' de 'MMMM' de 'yyyy",
                      'medium': "dd-MMM-yy",
@@ -265,7 +265,7 @@ class pdtLocale_es:
                      'medium': "HH:mm:ss",
                      'short':  "HH:mm"}
 
-    dp_order = [u'd', u'm', u'y']
+    dp_order = ['d', 'm', 'y']
 
     # this will be added to re_consts later
     units = {'seconds': ['second', 'sec'],
@@ -333,35 +333,35 @@ class pdtLocale_de:
     """
 
     localeID      = 'de_DE'   # don't use a unicode string
-    dateSep       = [u'.']
-    timeSep       = [u':']
+    dateSep       = ['.']
+    timeSep       = [':']
     meridian      = []
     usesMeridian  = False
     uses24        = True
 
-    Weekdays      = [u'montag', u'dienstag', u'mittwoch',
-                     u'donnerstag', u'freitag', u'samstag', u'sonntag']
-    shortWeekdays = [u'mo', u'di', u'mi',
-                     u'do', u'fr', u'sa', u'so']
-    Months        = [u'januar',  u'februar',  u'm\xe4rz',
-                     u'april',   u'mai',      u'juni',
-                     u'juli',    u'august',   u'september',
-                     u'oktober', u'november', u'dezember']
-    shortMonths   = [u'jan', u'feb', u'mrz',
-                     u'apr', u'mai', u'jun',
-                     u'jul', u'aug', u'sep',
-                     u'okt', u'nov', u'dez']
-    dateFormats   = {'full':   u'EEEE, d. MMMM yyyy',
-                     'long':   u'd. MMMM yyyy',
-                     'medium': u'dd.MM.yyyy',
-                     'short':  u'dd.MM.yy'}
+    Weekdays      = ['montag', 'dienstag', 'mittwoch',
+                     'donnerstag', 'freitag', 'samstag', 'sonntag']
+    shortWeekdays = ['mo', 'di', 'mi',
+                     'do', 'fr', 'sa', 'so']
+    Months        = ['januar',  'februar',  'm\xe4rz',
+                     'april',   'mai',      'juni',
+                     'juli',    'august',   'september',
+                     'oktober', 'november', 'dezember']
+    shortMonths   = ['jan', 'feb', 'mrz',
+                     'apr', 'mai', 'jun',
+                     'jul', 'aug', 'sep',
+                     'okt', 'nov', 'dez']
+    dateFormats   = {'full':   'EEEE, d. MMMM yyyy',
+                     'long':   'd. MMMM yyyy',
+                     'medium': 'dd.MM.yyyy',
+                     'short':  'dd.MM.yy'}
 
-    timeFormats   = {'full':   u'HH:mm:ss v',
-                     'long':   u'HH:mm:ss z',
-                     'medium': u'HH:mm:ss',
-                     'short':  u'HH:mm'}
+    timeFormats   = {'full':   'HH:mm:ss v',
+                     'long':   'HH:mm:ss z',
+                     'medium': 'HH:mm:ss',
+                     'short':  'HH:mm'}
 
-    dp_order = [u'd', u'm', u'y']
+    dp_order = ['d', 'm', 'y']
 
     # this will be added to re_consts later
     units = {'seconds': ['sekunden', 'sek',  's'],
@@ -384,48 +384,48 @@ class pdtLocale_de:
 
     # Used to adjust the returned date before/after the source
     # still looking for insight on how to translate all of them to german.
-    modifiers = {u'from':         1,
-                 u'before':      -1,
-                 u'after':        1,
-                 u'vergangener': -1,
-                 u'vorheriger':  -1,
-                 u'prev':        -1,
-                 u'letzter':     -1,
-                 u'n\xe4chster':  1,
-                 u'dieser':       0,
-                 u'previous':    -1,
-                 u'in a':         2,
-                 u'end of':       0,
-                 u'eod':          0,
-                 u'eo':           0}
+    modifiers = {'from':         1,
+                 'before':      -1,
+                 'after':        1,
+                 'vergangener': -1,
+                 'vorheriger':  -1,
+                 'prev':        -1,
+                 'letzter':     -1,
+                 'n\xe4chster':  1,
+                 'dieser':       0,
+                 'previous':    -1,
+                 'in a':         2,
+                 'end of':       0,
+                 'eod':          0,
+                 'eo':           0}
 
     # morgen/abermorgen does not work, see
     # http://code.google.com/p/parsedatetime/issues/detail?id=19
-    dayoffsets = {u'morgen':        1,
-                  u'heute':         0,
-                  u'gestern':      -1,
-                  u'vorgestern':   -2,
-                  u'\xfcbermorgen': 2}
+    dayoffsets = {'morgen':        1,
+                  'heute':         0,
+                  'gestern':      -1,
+                  'vorgestern':   -2,
+                  '\xfcbermorgen': 2}
 
     # special day and/or times, i.e. lunch, noon, evening
     # each element in the dictionary is a dictionary that is used
     # to fill in any value to be replace - the current date/time will
     # already have been populated by the method buildSources
-    re_sources    = {u'mittag':      {'hr': 12, 'mn': 0, 'sec': 0},
-                     u'mittags':     {'hr': 12, 'mn': 0, 'sec': 0},
-                     u'mittagessen': {'hr': 12, 'mn': 0, 'sec': 0},
-                     u'morgen':      {'hr':  6, 'mn': 0, 'sec': 0},
-                     u'morgens':     {'hr':  6, 'mn': 0, 'sec': 0},
-                     u'fr\xe4hst\xe4ck': {'hr':  8, 'mn': 0, 'sec': 0},
-                     u'abendessen':  {'hr': 19, 'mn': 0, 'sec': 0},
-                     u'abend':       {'hr': 18, 'mn': 0, 'sec': 0},
-                     u'abends':      {'hr': 18, 'mn': 0, 'sec': 0},
-                     u'mitternacht': {'hr':  0, 'mn': 0, 'sec': 0},
-                     u'nacht':       {'hr': 21, 'mn': 0, 'sec': 0},
-                     u'nachts':      {'hr': 21, 'mn': 0, 'sec': 0},
-                     u'heute abend': {'hr': 21, 'mn': 0, 'sec': 0},
-                     u'heute nacht': {'hr': 21, 'mn': 0, 'sec': 0},
-                     u'feierabend':  {'hr': 17, 'mn': 0, 'sec': 0}}
+    re_sources    = {'mittag':      {'hr': 12, 'mn': 0, 'sec': 0},
+                     'mittags':     {'hr': 12, 'mn': 0, 'sec': 0},
+                     'mittagessen': {'hr': 12, 'mn': 0, 'sec': 0},
+                     'morgen':      {'hr':  6, 'mn': 0, 'sec': 0},
+                     'morgens':     {'hr':  6, 'mn': 0, 'sec': 0},
+                     'fr\xe4hst\xe4ck': {'hr':  8, 'mn': 0, 'sec': 0},
+                     'abendessen':  {'hr': 19, 'mn': 0, 'sec': 0},
+                     'abend':       {'hr': 18, 'mn': 0, 'sec': 0},
+                     'abends':      {'hr': 18, 'mn': 0, 'sec': 0},
+                     'mitternacht': {'hr':  0, 'mn': 0, 'sec': 0},
+                     'nacht':       {'hr': 21, 'mn': 0, 'sec': 0},
+                     'nachts':      {'hr': 21, 'mn': 0, 'sec': 0},
+                     'heute abend': {'hr': 21, 'mn': 0, 'sec': 0},
+                     'heute nacht': {'hr': 21, 'mn': 0, 'sec': 0},
+                     'feierabend':  {'hr': 17, 'mn': 0, 'sec': 0}}
 
 
 pdtLocales = {'en_US': pdtLocale_en,
@@ -563,16 +563,16 @@ def _initSymbols(ptc):
     Helper function to initialize the single character constants
     and other symbols needed.
     """
-    ptc.timeSep  = [u':']
-    ptc.dateSep  = [u'/']
-    ptc.meridian = [u'AM', u'PM']
+    ptc.timeSep  = [':']
+    ptc.dateSep  = ['/']
+    ptc.meridian = ['AM', 'PM']
 
     ptc.usesMeridian = True
     ptc.uses24       = False
 
     if pyicu and ptc.usePyICU:
-        am = u''
-        pm = u''
+        am = ''
+        pm = ''
         ts = ''
 
         # ICU doesn't seem to provide directly the
@@ -581,8 +581,8 @@ def _initSymbols(ptc):
         o = ptc.icu_tf['short']
         s = ptc.timeFormats['short']
 
-        ptc.usesMeridian = u'a' in s
-        ptc.uses24       = u'H' in s
+        ptc.usesMeridian = 'a' in s
+        ptc.uses24       = 'H' in s
 
         # '11:45 AM' or '11:45'
         s = o.format(datetime.datetime(2003, 10, 30, 11, 45))
@@ -740,8 +740,8 @@ def _initPatterns(ptc):
     dateSeps = ''.join(ptc.dateSep) + '.'
 
     ptc.RE_DATE      = r'''(\s?|^)
-                           (?P<date>(\d\d?[%s]\d\d?([%s]\d\d(\d\d)?)?))
-                           (\s?|$|[^0-9a-zA-Z])''' % (dateSeps, dateSeps)
+                           (?P<date>(\d\d?[{}]\d\d?([{}]\d\d(\d\d)?)?))
+                           (\s?|$|[^0-9a-zA-Z])'''.format(dateSeps, dateSeps)
     ptc.RE_DATE2     = r'[%s]' % dateSeps
     ptc.RE_DAY       = r'''(\s?|^)
                            (?P<day>(today|tomorrow|yesterday))
@@ -881,7 +881,7 @@ class Constants:
         self.Month  =  30 * self.Day
         self.Year   = 365 * self.Day
 
-        self.rangeSep = u'-'
+        self.rangeSep = '-'
 
         self._DaysInMonthList = (
             31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)

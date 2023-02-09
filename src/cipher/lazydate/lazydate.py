@@ -6,17 +6,18 @@
 """Lazy date field"""
 
 import datetime
+
 import dateutil.parser
 import zope.interface
 import zope.schema
 
-from cipher.lazydate import interfaces
 import cipher.lazydate.parsedatetime.parsedatetime
 import cipher.lazydate.parsedatetime.parsedatetime_consts
+from cipher.lazydate import interfaces
 
 
 @zope.interface.implementer(interfaces.ILazyDate)
-class LazyDate(object):
+class LazyDate:
     """A value object for a textual datetime specification."""
 
     def __init__(self, date):
@@ -75,7 +76,7 @@ class LazyDate(object):
         return self.spec
 
     def __repr__(self):
-        return 'LazyDate(%r)' % (self.spec, )
+        return 'LazyDate({!r})'.format(self.spec)
 
 
 @zope.interface.implementer(interfaces.ILazyDateField)

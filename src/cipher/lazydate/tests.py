@@ -17,9 +17,10 @@ import doctest
 import re
 import unittest
 
-
 from zope.testing import renormalizing
+
 from cipher.lazydate import lazydate
+
 
 checker = renormalizing.RENormalizing([
     # Exception with module names.
@@ -199,9 +200,9 @@ def doctest_LazyDateF_empty():
 
 
 def test_suite():
-    return unittest.TestSuite((
+    return unittest.TestSuite(
         doctest.DocTestSuite(
             checker=checker,
             optionflags=doctest.REPORT_NDIFF | doctest.ELLIPSIS,
         )
-    ))
+    )

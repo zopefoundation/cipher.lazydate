@@ -14,7 +14,9 @@
 """Setup for package cipher.lazydate
 """
 import os
-from setuptools import setup, find_packages
+
+from setuptools import find_packages
+from setuptools import setup
 
 
 def read(*rnames):
@@ -23,11 +25,11 @@ def read(*rnames):
 
 setup(
     name='cipher.lazydate',
-    version='2.1.dev0',
+    version='3.0.dev0',
     description='Human-friendly zope.schema datetime field',
-    url="http://pypi.python.org/pypi/cipher.lazydate/",
+    url="https://github.com/zopefoundation/cipher.lazydate",
     author='Zope Foundation and Contributors',
-    author_email='zope-dev@zope.org',
+    author_email='zope-dev@zope.dev',
     keywords="schema date field",
     long_description=(
         read('README.txt')
@@ -40,20 +42,20 @@ setup(
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: Implementation :: CPython',
         'Natural Language :: English',
         'Operating System :: OS Independent',
-        'Framework :: Zope :: 3'],
+        'Framework :: Zope :: 3',
+    ],
     packages=find_packages('src'),
     package_dir={'': 'src'},
+    python_requires='>=3.7',
     extras_require=dict(
         test=[
             'coverage',
